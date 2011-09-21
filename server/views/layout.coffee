@@ -1,3 +1,5 @@
+bookmarkletURL = "/bookmarklet.js"
+
 doctype 5
 html ->
   head ->
@@ -58,8 +60,12 @@ html ->
       div id: 'content', ->
         @body
 
-      div id: 'send-message',
+      div id: 'send-message', ->
         'Send Message'
+
+      div id: 'bookmarklet',
+        a href: "javascript:(function(){var d=document,bt=d.getElementById('better-together');if(bt){return;}var s=d.createElement('script');s.src='#{bookmarkletURL}';d.body.appendChild(s)})()", ->
+          "Bookmarklet"
 
       footer ->
         p ->
