@@ -34,6 +34,7 @@ hiddenFormPost = (path, params) ->
   body.appendChild form
   form.submit()
 
-hiddenFormPost "/event/viewURL",
-  a: 'b'
-  c: 'd'
+hiddenFormPost "/message/viewURL",
+  data: ['http://polarmobile.com'] # todo should be the current page's URL
+  type: 'command'
+  source: 'browser'
