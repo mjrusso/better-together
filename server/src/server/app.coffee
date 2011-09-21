@@ -5,7 +5,9 @@ app = express.createServer()
 app.register '.coffee', require('coffeekup')
 app.set 'view engine', 'coffee'
 
-app.use express.static(__dirname + '/../public')
+app.use express.bodyParser()
+app.use express.static(__dirname + '/../../public')
+app.use express.static(__dirname + '/../../lib/client')
 
 require('./routes')(app)
 

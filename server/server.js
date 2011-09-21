@@ -1,1 +1,1 @@
-require('./lib/app')
+require('./lib/server/app')
