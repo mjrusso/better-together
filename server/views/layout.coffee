@@ -22,6 +22,9 @@ html ->
       socket.on 'announcement', (msg) ->
         console.log 'announcement: ', msg
 
+      socket.on 'viewURL', (url) ->
+        console.log 'viewURL: ', url
+
       socket.on 'nicknames', (nicknames) ->
         console.log 'nicknames: ', nicknames
 
