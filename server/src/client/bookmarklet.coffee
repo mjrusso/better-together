@@ -15,8 +15,8 @@ hiddenFormPost = (path, params) ->
     name: 'hidden-iframe'
     id: 'hidden-iframe'
     onload: ->
+      # note: `iframe.contentWindow.document.body` contains the response body
       iframe.style.visibility = 'hidden'
-      console.log 'response: ', iframe.contentWindow.document.body;
 
   body.appendChild iframe
 
