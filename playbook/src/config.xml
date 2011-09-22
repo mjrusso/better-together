@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets"
+        xmlns:rim="http://www.blackberry.com/ns/widgets"
+        id="com.mjrusso.bettertogether"
+        version="1.0.0"
+        rim:header="RIM-Widget:rim/widget">
+  <name>Better Together</name>
+  <description>Better Together</description>
+  <author rim:copyright="2011">Michael Russo</author>
+  <copyright>Michael Russo</copyright>
+  <rim:orientation mode="auto" />
+  <content src="index.html" />
+  <feature id="blackberry.app" />
+  <feature id="blackberry.app.event" />
+  <feature id="blackberry.invoke" />
+  <feature id="blackberry.system" />
+  <access uri ="*"/>
+</widget>

@@ -1,0 +1,64 @@
+desc 'Compile application source code'
+task :compile do
+  sh "coffee -o build/app/ -c src/coffee/"
+end
+
+desc 'Package application resources'
+task :package do
+  sh "mkdir -p build/public/app"
+  sh "cp -r src/img/ build/public/img"
+  sh "cp -r src/css/ build/public/css"
+  sh "cp -r src/lib/ build/public/lib"
+  sh "cp -r build/app/ build/public/app"
+  sh "cp src/index.html build/public/index.html"
+  sh "cp src/config.xml build/public/config.xml"
+end
+
+task :build_native do
+  sh "mkdir -p build/bin/"
+  sh "cd build/public; find . -name '*.DS_Store' -type f -delete;"
+  sh "cd build/public; zip -r ../bin/#{$package_name}.zip *"
+  sh "bbwp build/bin/#{$package_name}.zip -o build/bin/ -d"
+end
+
+desc 'Deploy to device'
+task :deploy do
+  sh "blackberry-deploy -installApp -password #{$pw} -device #{$ip} -package build/bin/#{$package_name}.bar"
+end
+
+desc 'Open debug console in browser (app must be compiled with -d flag)'
+task :debug do
+  sh "open http://#{$ip}:1337/"
+end
+
+desc 'Run simple static file server for dev purposes'
+task :serve do
+  sh "thin -A file -c build/public/ -a 0.0.0.0 -p 4567 start"
+end
+
+task :build_web, :needs => [:clean, :compile, :package] do
+  puts "done web build"
+end
+
+task :build, :needs => [:build_web, :build_native] do
+  puts "done native build"
+end
+
+desc 'Clean build artifacts'
+task :clean do
+  sh "rm -rf build/"
+end
+
+task :default => :build
+
+################################################################################
+
+$package_name = "bettertogether"
+
+################################################################################
+
+# IP address of the PlayBook being deployed to
+$ip = ENV['ip'] || '172.16.93.128'
+
+# password of the PlayBook being deployed to
+$pw = ENV['pw'] || 'playbook'
