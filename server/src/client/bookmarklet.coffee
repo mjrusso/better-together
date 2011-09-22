@@ -35,6 +35,6 @@ hiddenFormPost = (path, params) ->
   form.submit()
 
 hiddenFormPost "/message/viewURL",
-  data: ['http://polarmobile.com'] # todo should be the current page's URL
+  data: [window.location.href]
   type: 'command'
   source: 'browser'
