@@ -20,6 +20,9 @@ module.exports = (app) ->
     # type: "command" (or 'context')
     # source: "" (the app that is sending the message)
 
+    # forward mesage to all clients via socket.io
+    # TODO where to put `type` and `source` params?
+    io.sockets.emit(name, data)
 
     # TODO server should forward mesage to all clients via socket.io
 
