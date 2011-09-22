@@ -14,7 +14,7 @@ module.exports = (app) ->
     type = request.body.type
     source = request.body.source
 
-    # TODO params should be:
+    # params should be:
     # name: "" (name of message)
     # data: [] (list of parameters)
     # type: "command" (or 'context')
@@ -24,15 +24,7 @@ module.exports = (app) ->
     # TODO where to put `type` and `source` params?
     io.sockets.emit(name, data)
 
-    # TODO server should forward mesage to all clients via socket.io
-
-
-    console.log "name: ", name
-    console.log "data: ", data
-    console.log "type: ", type
-    console.log "source: ", source
-
-    response.send 'foobar'
+    response.send "#{name}: #{data}"
 
   nicknames = {}
 
