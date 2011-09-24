@@ -17,7 +17,8 @@
 # Here, `source` is the name of the application that the bridge is being
 # created on behalf of. The `device` object contains details about the
 # particular device that is being paired. (Device class: arbitrary, but
-# recommend names like 'tablet', 'smartphone', 'desktop', etc.)
+# recommend names like 'tablet', 'smartphone', 'desktop', etc.) Other valid keys
+# include 'platform', 'ua', etc.
 #
 # Connect to the intermediate server being used to route messages between
 # paired devices.

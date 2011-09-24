@@ -10,23 +10,15 @@ module.exports = (app) ->
   app.post '/message/:name', (request, response) ->
 
     name = request.params.name
-    data = request.body.data
-    type = request.body.type
+    params = request.body.params
     source = request.body.source
-
-    # params should be:
-    # name: "" (name of message)
-    # data: [] (list of parameters)
-    # type: "command" (or 'context')
-    # source: "" (the app that is sending the message)
+    device = JSON.parse request.body.device
 
     # forward mesage to all clients via socket.io
-    # TODO where to put `type` and `source` params?
-    io.sockets.emit(name, data)
-
-    response.send "#{name}: #{data}"
+    io.sockets.emit name, {source, device}, params
 
   nicknames = {}
+    response.send "#{name}: #{params}"
 
   io.sockets.on 'connection', (socket) ->
 

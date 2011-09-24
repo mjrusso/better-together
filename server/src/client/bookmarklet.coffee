@@ -35,7 +35,9 @@ hiddenFormPost = (path, params) ->
   body.appendChild form
   form.submit()
 
-hiddenFormPost "#{serverURL}/message/viewURL",
-  data: [window.location.href]
-  type: 'command'
+hiddenFormPost "#{serverURL}/message/command:viewURL",
+  params: [window.location.href]
   source: 'browser'
+  device: JSON.stringify
+    ua: navigator.userAgent
+    platform: navigator.platform
