@@ -60,9 +60,14 @@ class Bridge
     @source = source
     @device = device
     @ready = false
+    @log = (params...) -> console.log '[bridge] -', params...
 
   connect: (server) ->
     @socket = io.connect server
+    @socket.on 'reconnecting', => @log 'reconnecting...'
+    @socket.on 'reconnect', => @log 'reconnected'
+    @socket.on 'error', (e) => @log 'error: ', e
+
     @socket.emit 'bridge:configure', @source, @device
     @socket.on 'bridge:ready', =>
       @ready = true
