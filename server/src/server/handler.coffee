@@ -32,6 +32,16 @@ module.exports = (app) ->
 
     io.sockets.socket(socket.id).emit('announcement', 'welcome ' + socket.id)
 
+    socket.on 'bridge:configure', (source, device) -> #({source, device}) ->
+      console.log "configuring client: source (#{source}) device", device
+      socket.set 'details', {source, device}
+
+    socket.on 'bridge:send', (name, params...) ->
+      console.log "received '#{name}' event with params: ", params
+
+      socket.get 'details', (err, {source, device}) ->
+        socket.broadcast.emit name, {source, device}, params...
+
     socket.on 'user message', (msg) ->
       socket.broadcast.emit 'user message', socket.nickname, msg
       socket.emit 'announcement', 'this is a personal message to myself!'
