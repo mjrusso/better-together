@@ -60,6 +60,7 @@ class Bridge
 
   connect: (server) ->
     @socket = io.connect server
+    @socket.emit 'bridge:configure', @source, @device
 
   configure: (details) ->
     for key, value of details
