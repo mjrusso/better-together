@@ -34,7 +34,8 @@ module.exports = (app) ->
 
     socket.on 'bridge:configure', (source, device) -> #({source, device}) ->
       console.log "configuring client: source (#{source}) device", device
-      socket.set 'details', {source, device}
+      socket.set 'details', {source, device}, ->
+        socket.emit 'bridge:ready'
 
     socket.on 'bridge:send', (name, params...) ->
       console.log "received '#{name}' event with params: ", params

@@ -58,10 +58,13 @@ class Bridge
   constructor: ({source, device}) ->
     @source = source
     @device = device
+    @ready = false
 
   connect: (server) ->
     @socket = io.connect server
     @socket.emit 'bridge:configure', @source, @device
+    @socket.on 'bridge:ready', =>
+      @ready = true
 
   configure: (details) ->
     for key, value of details
