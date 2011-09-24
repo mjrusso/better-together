@@ -1,36 +1,21 @@
-socket = io.connect()
+$ ->
 
-socket.on 'connect', ->
-  console.log 'connected'
+  bridge = new Bridge
+    source: 'browser'
+    device:
+      id: '21B11682'
+      class: 'tablet'
+      model: '...'
 
-socket.on 'announcement', (msg) ->
-  console.log 'announcement: ', msg
+  bridge.connect()
 
-socket.on 'viewURL', (url) ->
-  console.log 'viewURL: ', url
+  bridge.respond 'command:viewURL', ({source, device}, params...) ->
+    console.log 'got command:viewURL and params:', params
+    console.log '\tsender:', {source, device}
 
-socket.on 'nicknames', (nicknames) ->
-  console.log 'nicknames: ', nicknames
-
-socket.on 'user message', (from, msg) ->
-  console.log 'user message: ', from, msg
-
-socket.on 'reconnect', ->
-  console.log 'reconnected'
-
-socket.on 'reconnecting', ->
-  console.log 'reconnecting...'
-
-socket.on 'error', (e) ->
-  console.log 'error: ', e
-
-$(document).ready ->
-
-  socket.emit 'nickname', 'MJR', (alreadySet) ->
-    if not alreadySet
-      console.log 'nickname set'
-    else
-      console.log 'nickname already in use!'
+  bridge.respond 'command:myCommand', ({source, device}, params...) ->
+    console.log 'got command:myCommand and params:', params
+    console.log '\tsender:', {source, device}
 
   ($ '#send-message').click ->
-    socket.emit 'user message', 'my message!'#$('#message').val()
+    bridge.send 'command:myCommand', 'a', 'b', 'c'
