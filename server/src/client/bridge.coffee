@@ -1,6 +1,7 @@
 ## Better Together Bridge
 #
 # Connects multiple devices together.
+# Requires [socket.io](http://socket.io/).
 
 #### Usage Examples
 #
