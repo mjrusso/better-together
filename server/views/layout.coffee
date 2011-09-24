@@ -11,6 +11,7 @@ html ->
 
     script src: 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'
     script src: '/socket.io/socket.io.js'
+    script src: '/bridge.js'
     script src: '/app.js'
 
     coffeescript ->
