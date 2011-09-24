@@ -69,7 +69,7 @@ class Bridge
         @[key] = value
 
   send: (name, params...) ->
-    @socket.emit 'bridge', name, params...
+    @socket.emit 'bridge:send', name, params...
 
   respond: (name, cb) ->
     @socket.on name, cb
