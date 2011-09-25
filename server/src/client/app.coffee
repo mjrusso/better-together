@@ -1,3 +1,6 @@
+newActivity = (description) ->
+  ($ '#activity-stream > ul').prepend "<li>#{description}</li>"
+
 $ ->
 
   bridge = new Bridge
@@ -17,11 +20,8 @@ $ ->
     console.log 'got command:myCommand and params:', params
     console.log '\tsender:', {source, device}
 
-
   bridge.respond 'bridge:joined', ({source, device}) ->
-    ($ '#activity-stream > ul').prepend(
-      "<li>joined: #{device.class} (#{source})</li>"
-    )
+    newActivity "joined: #{device.class} (#{source})"
     console.log "new device joined bridge (#{source})", device
 
   ($ '#send-message').click ->
