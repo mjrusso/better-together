@@ -17,5 +17,12 @@ $ ->
     console.log 'got command:myCommand and params:', params
     console.log '\tsender:', {source, device}
 
+
+  bridge.respond 'bridge:joined', ({source, device}) ->
+    ($ '#activity-stream > ul').prepend(
+      "<li>joined: #{device.class} (#{source})</li>"
+    )
+    console.log "new device joined bridge (#{source})", device
+
   ($ '#send-message').click ->
     bridge.send 'command:myCommand', 'a', 'b', 'c'

@@ -47,7 +47,5 @@ html ->
                   'here'
         div class: 'span4', ->
           h3 "Secondary content", ->
-            ul ->
-              for i in [0...10]
-                li ->
-                  'here'
+            div id: 'activity-stream', ->
+              ul ->
