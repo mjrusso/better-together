@@ -1,29 +1,34 @@
-puts = (message) ->
-  ($ 'body').append "<p>#{message}</p>"
+puts = (message...) ->
+  ($ 'body').append "<p>#{message.join ' '}</p>"
+  console.log message...
 
 window.App =
 
   init: (server) ->
 
-    puts 'welcome'
-    console.log "done init"
+    puts "init"
 
-    socket = io.connect server
+    device =
+      class: 'tablet'
+      ua: navigator.userAgent
+      platform: navigator.platform
 
-    socket.on 'connect', ->
-      console.log 'connected'
+    if blackberry?
+      device.id = blackberry.identity.PIN
+      device.model = blackberry.system.model
 
-    socket.on 'reconnect', ->
-      console.log 'reconnected'
+    bridge = new Bridge
+      source: 'browser'
+      device: device
 
-    socket.on 'reconnecting', ->
-      console.log 'reconnecting...'
+    puts "connecting to bridge..."
 
-    socket.on 'error', (e) ->
-      console.log 'error: ', e
+    bridge.connect server
 
-    socket.on 'viewURL', (url) ->
-      console.log 'viewURL: ', url
+    bridge.respond 'command:viewURL', ({source, device}, url) ->
+      puts 'received viewURL command: ', url
+      console.log 'sender: ', {source, device}
+
       if blackberry?.invoke?
         try
           invoke = blackberry.invoke

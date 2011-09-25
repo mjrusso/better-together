@@ -14,5 +14,8 @@
   <feature id="blackberry.app.event" />
   <feature id="blackberry.invoke" />
   <feature id="blackberry.system" />
+  <feature id="blackberry.identity" />
+  <feature id="blackberry.identity.phone" />
+  <rim:permit>read_device_identifying_information</rim:permit>
   <access uri ="*"/>
 </widget>
