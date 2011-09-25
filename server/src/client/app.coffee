@@ -9,8 +9,8 @@ $ ->
 
   bridge.connect()
 
-  bridge.respond 'command:viewURL', ({source, device}, params...) ->
-    console.log 'got command:viewURL and params:', params
+  bridge.respond 'command:viewURL', ({source, device}, url) ->
+    console.log 'got command:viewURL with url:', url
     console.log '\tsender:', {source, device}
 
   bridge.respond 'command:myCommand', ({source, device}, params...) ->
