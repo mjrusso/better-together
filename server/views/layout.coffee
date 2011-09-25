@@ -38,13 +38,12 @@ html ->
                 'Bookmarklet'
 
     div class: 'container', ->
+
       div class: 'row', ->
         div class: 'span10', ->
           h2 "Main content", ->
-            ul ->
-              for i in [0...10]
-                li ->
-                  'here'
+            div id: 'main-content', ->
+
         div class: 'span4', ->
           h3 "Secondary content", ->
             div id: 'activity-stream', ->

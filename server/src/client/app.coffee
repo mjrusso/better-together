@@ -24,5 +24,13 @@ $ ->
     newActivity "joined: #{device.class} (#{source})"
     console.log "new device joined bridge (#{source})", device
 
+  bridge.respond 'context:viewContent', ({source, device}, title, href, body) ->
+    newActivity "viewContent: #{title}"
+    ($ '#main-content').empty()
+    ($ '#main-content').append "<h2>#{title}</h2>"
+    for item in body
+      if item.type is 'html'
+        ($ '#main-content').append item.data
+
   ($ '#send-message').click ->
     bridge.send 'command:myCommand', 'a', 'b', 'c'
