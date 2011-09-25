@@ -7,6 +7,7 @@ html ->
     meta charset: 'utf-8'
 
     link rel: 'icon', href: '/favicon.png'
+    link rel: 'stylesheet', href: '/bootstrap.css'
     link rel: 'stylesheet', href: '/app.css'
 
     script src: 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'
@@ -19,25 +20,34 @@ html ->
         console.log 'dom ready'
 
   body ->
-      header ->
-        a href: '/', title: 'Home', -> 'Home'
 
-        nav ->
-          ul ->
-            for item in ['A', 'B', 'C']
-              li -> a href: "/#{item.toLowerCase()}", title: item, -> item
+    div class: 'topbar', ->
+      div class: 'fill', ->
+        div class: 'container', ->
+          a class: 'brand', href: '#', ->
+            "Better Together"
+          ul class: 'nav', ->
+            li class: 'active', ->
+              a href: '#', ->
+                'Home'
+            li ->
+              a href: '#', id: 'send-message', ->
+                'Send Message'
+            li ->
+              a href: "javascript:(function(){var d=document,bt=d.getElementById('better-together');if(bt){return;}var s=d.createElement('script');s.src='#{bookmarkletURL}';d.body.appendChild(s)})()", ->
+                'Bookmarklet'
 
-      div id: 'content', ->
-        @body
-
-      div id: 'send-message', ->
-        'Send Message'
-
-      div id: 'bookmarklet',
-        a href: "javascript:(function(){var d=document,bt=d.getElementById('better-together');if(bt){return;}var s=d.createElement('script');s.src='#{bookmarkletURL}';d.body.appendChild(s)})()", ->
-          "Bookmarklet"
-
-      footer ->
-        p ->
-          i ->
-            "it's better together"
+    div class: 'container', ->
+      div class: 'row', ->
+        div class: 'span10', ->
+          h2 "Main content", ->
+            ul ->
+              for i in [0...10]
+                li ->
+                  'here'
+        div class: 'span4', ->
+          h3 "Secondary content", ->
+            ul ->
+              for i in [0...10]
+                li ->
+                  'here'
