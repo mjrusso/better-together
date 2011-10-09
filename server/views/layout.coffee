@@ -41,7 +41,7 @@ html ->
 
       div class: 'row', ->
         div class: 'span10', ->
-          h2 "Main content", ->
+          div "main content", ->
             div id: 'main-content', ->
 
         div class: 'span4', ->
