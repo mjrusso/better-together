@@ -28,9 +28,7 @@ $ ->
     newActivity "viewContent: #{title}"
     ($ '#main-content').empty()
     ($ '#main-content').append "<h2>#{title}</h2>"
-    for item in body
-      if item.type is 'html'
-        ($ '#main-content').append item.data
+    ($ '#main-content').append body
 
   ($ '#send-message').click ->
     bridge.send 'command:myCommand', 'a', 'b', 'c'
