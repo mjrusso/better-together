@@ -15,10 +15,6 @@ html ->
     script src: '/bridge.js'
     script src: '/app.js'
 
-    coffeescript ->
-      $(document).ready ->
-        console.log 'dom ready'
-
   body ->
 
     div class: 'topbar', ->
