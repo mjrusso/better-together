@@ -14,6 +14,8 @@ html ->
     script src: '/socket.io/socket.io.js'
     script src: '/bridge.js'
     script src: '/app.js'
+    script src: 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'
+    script src: 'http://embed-api.qwiki.com/static/js/v1/api.js'
 
   body ->
 

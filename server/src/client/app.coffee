@@ -30,5 +30,35 @@ $ ->
     ($ '#main-content').append "<h2>#{title}</h2>"
     ($ '#main-content').append body
 
+  bridge.respond 'context:viewContent', ({source, device}, title, href, body) ->
+    $.ajax
+      url: '/context/keywords'
+      type: 'POST'
+      data:
+        title: title
+        text: body
+
+      success: (response) ->
+        console.log response
+
+        ($ '#main-content').append("<h3>Context</h3>")
+
+        for i in [0...4]
+          term = response[i]?.word
+          if term
+            console.log "term: #{term}"
+            div = "qwiki-#{i}"
+            ($ '#main-content').append "<div id='#{div}'></div>"
+
+            QwikiContainer.build
+              query: term
+              container: '#' + div
+              layout: 'grid'
+              width: 356
+              count: 4
+
+      error: ->
+        console.log '/context/keywords request failed'
+
   ($ '#send-message').click ->
     bridge.send 'command:myCommand', 'a', 'b', 'c'

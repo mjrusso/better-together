@@ -9,6 +9,7 @@
       "express": "2.4.x" 
     , "coffeekup": "0.3.x"
     , "socket.io": "0.8.4"
+    , "glossary": "0.1.1"
   }
   , "devDependencies": {
       "coffee-script": "1.1.x"
