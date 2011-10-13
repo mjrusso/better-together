@@ -1,5 +1,4 @@
 body = document.getElementsByTagName('body')[0]
-serverURL = "http://192.168.1.109:8000"
 
 # Utility function for creating a new element and setting initial properties
 # from: https://github.com/barberboy/css-terminal
@@ -35,7 +34,7 @@ hiddenFormPost = (path, params) ->
   body.appendChild form
   form.submit()
 
-hiddenFormPost "#{serverURL}/message/command:viewURL",
+hiddenFormPost "message/command:viewURL",
   params: [window.location.href]
   source: 'browser'
   device: JSON.stringify
