@@ -16,6 +16,8 @@
   <feature id="blackberry.system" />
   <feature id="blackberry.identity" />
   <feature id="blackberry.identity.phone" />
-  <rim:permit>read_device_identifying_information</rim:permit>
+  <rim:permissions>
+    <rim:permit>read_device_identifying_information</rim:permit>
+  </rim:permissions>
   <access uri ="*"/>
 </widget>
