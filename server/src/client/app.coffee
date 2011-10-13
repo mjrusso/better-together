@@ -1,14 +1,29 @@
 newActivity = (description) ->
   ($ '#activity-stream > ul').prepend "<li>#{description}</li>"
 
+deviceClass = ->
+  ua = navigator.userAgent
+  if (ua.match /PlayBook/ or
+      ua.match /iPad/ or
+      ua.match /TouchPad/)
+    'tablet'
+  else if (ua.match /BlackBerry/ or
+           ua.match /iPhone/ or
+           ua.match /Android/ or
+           ua.match /webOS/)
+    'smartphone'
+  else
+    'desktop'
+
 $ ->
 
   bridge = new Bridge
     source: 'browser'
     device:
       id: '21B11682'
-      class: 'tablet'
-      model: '...'
+      class: deviceClass()
+      ua: navigator.userAgent
+      platform: navigator.platform
 
   bridge.connect()
 
