@@ -21,7 +21,7 @@ module.exports = (app) ->
 
   io.sockets.on 'connection', (socket) ->
 
-    socket.on 'bridge:configure', (source, device) -> #({source, device}) ->
+    socket.on 'bridge:configure', (source, device) ->
       console.log "configuring client: source (#{source}) device", device
       socket.set 'details', {source, device}, ->
         socket.emit 'bridge:ready'
