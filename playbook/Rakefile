@@ -10,8 +10,8 @@ task :package do
   sh "cp -r src/css/ build/public/css"
   sh "cp -r src/lib/ build/public/lib"
   sh "cp -r build/app/ build/public/app"
-  sh "cp src/index.html build/public/index.html"
   sh "cp src/config.xml build/public/config.xml"
+  sh "erb config.erb src/index.html > build/public/index.html"
 end
 
 task :build_native do
