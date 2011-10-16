@@ -8,6 +8,10 @@ Built to complement DevCon session (add more details)
 
 ### Server
 
+change into server directory:
+
+    cd server
+
 install deps:
 
     cake deps
