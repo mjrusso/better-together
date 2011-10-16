@@ -6,8 +6,6 @@ window.App =
 
   init: (server) ->
 
-    puts "init"
-
     device =
       class: 'tablet'
       ua: navigator.userAgent
@@ -21,12 +19,10 @@ window.App =
       source: 'browser'
       device: device
 
-    puts "connecting to bridge..."
-
     bridge.connect server
 
     bridge.respond 'command:viewURL', ({source, device}, url) ->
-      puts 'received viewURL command: ', url
+      puts 'Received `command:viewURL` message with URL: ', url
       console.log 'sender: ', {source, device}
 
       if blackberry?.invoke?
@@ -35,3 +31,5 @@ window.App =
           invoke.invoke invoke.APP_BROWSER, new invoke.BrowserArguments url
         catch e
           console.log e
+
+    puts "Initialization complete."
