@@ -16,7 +16,7 @@ window.App =
       device.model = blackberry.system.model
 
     bridge = new Bridge
-      source: 'browser'
+      source: 'better-together-playbook-app'
       device: device
 
     bridge.connect server
