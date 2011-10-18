@@ -14,7 +14,7 @@ Clients can dispatch messages, which are then forwarded to all other connected (
 
 Although the goal of the project is to facilitate the formation of application user interfaces that span multiple devices simultaneously, the nature of the framework is such that it can be used for any arbitrary cross-device communication.
 
-![](diagrams/better-together-bridge.png)
+![system](https://github.com/mjrusso/better-together/raw/master/diagrams/better-together-bridge.png)
 
 ## Rough Draft (What's missing?)
 
@@ -56,7 +56,7 @@ The Context Service is a prototype that will run incoming textual content throug
 
 The Shell App listens for messages of type `context:viewContent`, and, in response, makes a request to this Context Service. Once the Context Service returns the ranked list of terms, the Shell App makes an additional request to the [Qwiki API][qwiki-api] to automatically display content that is related to the supplied text.
 
-![](diagrams/better-together-contextual-data-service.png)
+![context-service](https://github.com/mjrusso/better-together/raw/master/diagrams/better-together-contextual-data-service.png)
 
 ## API Details
 
